@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useActionState } from "react";
 import Image from "next/image";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormStatus } from "react-dom";
 import { Bot, ImageIcon, Loader, Sparkles, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -37,7 +37,7 @@ function SubmitButton() {
 }
 
 export function PlantIdentifier() {
-  const [state, formAction] = useFormState(identifyPlant, initialState);
+  const [state, formAction] = useActionState(identifyPlant, initialState);
   const { toast } = useToast();
 
   const [imagePreview, setImagePreview] = useState<string | null>(null);
