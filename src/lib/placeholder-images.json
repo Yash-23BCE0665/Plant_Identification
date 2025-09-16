@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "plant-1",
+      "description": "A close-up of a green succulent plant.",
+      "imageUrl": "https://picsum.photos/seed/plant1/600/400",
+      "imageHint": "succulent plant"
+    }
+  ]
 }
