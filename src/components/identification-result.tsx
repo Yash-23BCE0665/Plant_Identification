@@ -13,8 +13,8 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Lightbulb, List, RefreshCw } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 type IdentificationResultProps = {
   result: IdentifyPlantSpeciesOutput;
@@ -65,9 +65,7 @@ export function IdentificationResult({
               <Lightbulb className="h-4 w-4 mr-2 text-accent" />
               About {result.commonName}
             </h4>
-            <p className="text-sm text-foreground/80">
-              {result.description}
-            </p>
+            <p className="text-sm text-foreground/80">{result.description}</p>
           </div>
         </CardContent>
         <CardFooter>

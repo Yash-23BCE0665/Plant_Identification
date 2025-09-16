@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect, useActionState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { Bot, ImageIcon, Loader, Sparkles, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -37,7 +37,7 @@ function SubmitButton() {
 }
 
 export function PlantIdentifier() {
-  const [state, formAction, isPending] = useActionState(identifyPlant, initialState);
+  const [state, formAction] = useFormState(identifyPlant, initialState);
   const { toast } = useToast();
 
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -75,7 +75,7 @@ export function PlantIdentifier() {
       reader.onloadend = () => {
         setImagePreview(URL.createObjectURL(file));
         setImageDataUri(reader.result as string);
-        setShowResult(false); 
+        setShowResult(false);
       };
       reader.readAsDataURL(file);
     }
@@ -89,12 +89,12 @@ export function PlantIdentifier() {
     }
     setShowResult(false);
   };
-  
+
   const handleReset = () => {
     handleClearImage();
   };
 
-  const isIdentifying = isPending;
+  const isIdentifying = useFormStatus().pending;
 
   return (
     <div className="grid md:grid-cols-2 gap-8 items-start">
@@ -137,7 +137,7 @@ export function PlantIdentifier() {
                     fill
                     className="object-contain"
                   />
-                   {!isIdentifying && (
+                  {!isIdentifying && (
                     <Button
                       variant="destructive"
                       size="icon"
@@ -146,13 +146,13 @@ export function PlantIdentifier() {
                     >
                       <X className="h-4 w-4" />
                     </Button>
-                   )}
+                  )}
                 </div>
               )}
             </CardContent>
           </Card>
           {imagePreview && !showResult && (
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-4">
               <SubmitButton />
             </div>
           )}
