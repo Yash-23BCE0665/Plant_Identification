@@ -32,9 +32,11 @@ export function IdentificationResult({
       <Card>
         <CardHeader>
           <CardTitle className="text-3xl font-headline tracking-tight">
-            {result.species}
+            {result.commonName}
           </CardTitle>
-          <CardDescription>Primary Identification</CardDescription>
+          <CardDescription>
+            Scientific Name: {result.scientificName}
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
@@ -61,11 +63,10 @@ export function IdentificationResult({
           <div>
             <h4 className="text-sm font-medium text-muted-foreground mb-2 flex items-center">
               <Lightbulb className="h-4 w-4 mr-2 text-accent" />
-              Species Information
+              About {result.commonName}
             </h4>
             <p className="text-sm text-foreground/80">
-              Detailed information about {result.species} will be available in a
-              future update.
+              {result.description}
             </p>
           </div>
         </CardContent>
