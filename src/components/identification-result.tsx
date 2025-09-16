@@ -7,25 +7,25 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  CardFooter,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Lightbulb, List } from "lucide-react";
+import { Lightbulb, List, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 type IdentificationResultProps = {
   result: IdentifyPlantSpeciesOutput;
+  onReset: () => void;
 };
 
-export function IdentificationResult({ result }: IdentificationResultProps) {
+export function IdentificationResult({
+  result,
+  onReset,
+}: IdentificationResultProps) {
   const confidencePercent = Math.round(result.confidence * 100);
-
-  const getConfidenceColor = () => {
-    if (confidencePercent > 70) return "bg-green-500";
-    if (confidencePercent > 40) return "bg-yellow-500";
-    return "bg-red-500";
-  };
 
   return (
     <div className="space-y-6 animate-in fade-in-50 duration-500">
@@ -69,6 +69,12 @@ export function IdentificationResult({ result }: IdentificationResultProps) {
             </p>
           </div>
         </CardContent>
+        <CardFooter>
+          <Button onClick={onReset} className="w-full">
+            <RefreshCw className="mr-2 h-4 w-4" />
+            Identify Another Plant
+          </Button>
+        </CardFooter>
       </Card>
 
       {result.alternativeSuggestions &&
