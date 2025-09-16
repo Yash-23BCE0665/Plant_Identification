@@ -12,6 +12,7 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Lightbulb, List } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type IdentificationResultProps = {
   result: IdentifyPlantSpeciesOutput;
